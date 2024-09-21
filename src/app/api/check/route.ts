@@ -59,7 +59,7 @@ export const GET = async (request: NextRequest) => {
 
       const thread = await getPostThread(notification.uri);
 
-      const recordURI = await handleRequest(thread.post as Post);
+      const recordURI = await handleRequest(thread.parent?.post as Post, thread.post as Post);
 
       success.push({ notificationURI: notification.uri, recordURI });
 

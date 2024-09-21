@@ -4,7 +4,7 @@ const nextConfig = {
     return [
       {
         source: "/",
-        destination: "https://github.com/developerdavi/screenshot-this-bsky",
+        destination: "https://down.blue",
         permanent: false,
       },
     ];
