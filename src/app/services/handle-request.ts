@@ -2,7 +2,7 @@ import { t } from "../dictionary/translate";
 import { Post } from "../types";
 import { getReplyData } from "../utils/get-reply-data";
 import { createPost } from "./create-post";
-// import { generatePrint } from "./generate-print";
+import  { NotAReplyError } from "../errors";
 
 export const handleRequest = async (parent: Post, post: Post) => {
 
@@ -14,7 +14,7 @@ export const handleRequest = async (parent: Post, post: Post) => {
   https://down.blue/?url=https://bsky.app/profile/did:plc:44vqjiiftiz32k4thwduvtcq/post/3l4brcfqlz22p
 
   if (typeof post.record.reply === "undefined") {
-    // throw new NotAReplyError(post);
+    throw new NotAReplyError(post);
   }
 
   // const image = await generatePrint(post.uri).catch(() => {

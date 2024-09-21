@@ -1,10 +1,10 @@
 import { Notification } from "@atproto/api/dist/client/types/app/bsky/notification/listNotifications";
-import { ImageGenerationError, NotAReplyError } from "../errors";
 import { getReplyData } from "../utils/get-reply-data";
 import { createPost } from "./create-post";
 import { Post, Record } from "../types";
 import { sendMessage } from "../bot/services/send-message";
 import { t } from "../dictionary/translate";
+import  { NotAReplyError } from "../errors";
 
 export const handleError = async (
   error: unknown,
@@ -23,12 +23,6 @@ export const handleError = async (
     switch (true) {
       case error instanceof NotAReplyError:
         await reply(error.post, t("error.notAReply", error.post.record.langs));
-        break;
-      case error instanceof ImageGenerationError:
-        await reply(
-          error.post,
-          t("error.imageGeneration", error.post.record.langs)
-        );
         break;
       default:
         await sendMessage(
