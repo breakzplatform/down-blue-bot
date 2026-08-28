@@ -13,7 +13,10 @@ export const handleRequest = async (parent: Post, post: Post) => {
 
   const [, , parentDid, , parentRecordKey] = parent.uri.split("/");
 
-  const text = `⬇️ ${t("success.reply", post.record.langs)}`;
+  const prefix = "⬇️ ";
+  const text = `${prefix}${t("success.reply", post.record.langs)}`;
+
+  const encoder = new TextEncoder();
 
   const recordURI = await createPost({
     text,
@@ -21,8 +24,8 @@ export const handleRequest = async (parent: Post, post: Post) => {
     facets: [
       {
         index: {
-          byteStart: 7,
-          byteEnd: text.length + 6,
+          byteStart: encoder.encode(prefix).byteLength,
+          byteEnd: encoder.encode(text).byteLength,
         },
         features: [
           {
