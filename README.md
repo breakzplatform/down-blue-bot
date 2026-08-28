@@ -1,9 +1,3 @@
-<h3 align="center">
-  <a href="https://cdn.bsky.app/img/feed_fullsize/plain/did:plc:u7hglg6pwujzshicmdez4hjj/bafkreify7r4nzuy7cl33nffqbu3v67qcueurvhalkqacxdm5haqo73aizq@jpeg">
-  <img src="https://cdn.bsky.app/img/feed_fullsize/plain/did:plc:u7hglg6pwujzshicmdez4hjj/bafkreify7r4nzuy7cl33nffqbu3v67qcueurvhalkqacxdm5haqo73aizq@jpeg" alt="Post telling that Bluesky lacks of a 'screenshot this' kind of bot" width="500">
-  </a>
-</h3>
-
 ## Getting Started
 
 ### Stack
@@ -51,6 +45,15 @@ This project exposes the following route:
 - A single run reads at most 10 pages of 100 notifications. Anything older than that is left for the next run.
 - Replies are written in English, Portuguese, Japanese, German or Spanish, picked from the language tags of the post that mentions the bot. Any other language falls back to English.
 
+## Credits
+
+This project started as a fork of [screenshot-this-bsky](https://github.com/developerdavi/screenshot-this-bsky)
+by [Davi Coelho](https://github.com/developerdavi), which replied to mentions with a
+generated screenshot of the post. It has since been rewritten around a different
+purpose — replying with a download link — but the Bluesky client layer and much of
+the original structure are still his work.
+
 ## License
 
-MIT © [Davi Coelho](https://github.com/developerdavi)
+MIT — Copyright (c) 2024 Davi Coelho, Copyright (c) 2024-2026 Joselito.
+See [LICENSE](/LICENSE).
