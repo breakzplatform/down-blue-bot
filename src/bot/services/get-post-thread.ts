@@ -1,4 +1,4 @@
-import { getAgent } from "../agent";
+import { getAgent } from "../agent.js";
 
 export const getPostThread = async (uri: string) => {
   const agent = await getAgent();

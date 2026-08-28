@@ -1,17 +1,17 @@
 import { AppBskyFeedDefs } from "@atproto/api";
 
-import { getAgent } from "../src/bot/agent";
-import { getPostThread } from "../src/bot/services/get-post-thread";
-import { getUnreadNotificationsCount } from "../src/bot/services/get-unread-notifications-count";
-import { updateSeen } from "../src/bot/services/updateSeen";
+import { getAgent } from "../src/bot/agent.js";
+import { getPostThread } from "../src/bot/services/get-post-thread.js";
+import { getUnreadNotificationsCount } from "../src/bot/services/get-unread-notifications-count.js";
+import { updateSeen } from "../src/bot/services/updateSeen.js";
 
-import { NotAReplyError, PostUnavailableError } from "../src/errors";
-import { handleError } from "../src/services/handle-error";
-import { handleRequest } from "../src/services/handle-request";
-import { Post } from "../src/types";
-import { getUnreadMentions } from "../src/utils/get-unread-mentions";
-import { hasAnswered } from "../src/utils/has-answered";
-import { validateCronSecret } from "../src/utils/validate-cron-secret";
+import { NotAReplyError, PostUnavailableError } from "../src/errors.js";
+import { handleError } from "../src/services/handle-error.js";
+import { handleRequest } from "../src/services/handle-request.js";
+import { Post } from "../src/types.js";
+import { getUnreadMentions } from "../src/utils/get-unread-mentions.js";
+import { hasAnswered } from "../src/utils/has-answered.js";
+import { validateCronSecret } from "../src/utils/validate-cron-secret.js";
 
 interface Successful {
   notificationURI: string;

@@ -1,8 +1,8 @@
-import { resolveLanguage, t } from "../dictionary/translate";
-import { Post } from "../types";
-import { getReplyData } from "../utils/get-reply-data";
-import { createPost } from "./create-post";
-import { NotAReplyError } from "../errors";
+import { resolveLanguage, t } from "../dictionary/translate.js";
+import { Post } from "../types.js";
+import { getReplyData } from "../utils/get-reply-data.js";
+import { createPost } from "./create-post.js";
+import { NotAReplyError } from "../errors.js";
 
 export const handleRequest = async (parent: Post, post: Post) => {
   console.info(`Post URI: ${post.uri}`);

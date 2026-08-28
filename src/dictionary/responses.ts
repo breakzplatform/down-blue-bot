@@ -1,4 +1,4 @@
-import { Languages } from "./types";
+import { Languages } from "./types.js";
 
 export const responses = {
   "success.reply": {

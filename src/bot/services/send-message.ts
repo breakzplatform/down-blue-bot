@@ -1,4 +1,4 @@
-import { getAgent } from "../agent";
+import { getAgent } from "../agent.js";
 
 export const sendMessage = async (targetDid: string, text: string) => {
   const agent = await getAgent();

@@ -1,5 +1,5 @@
 import { AppBskyFeedPost } from "@atproto/api";
-import { getAgent } from "../agent";
+import { getAgent } from "../agent.js";
 
 export const createRecord = async (record: AppBskyFeedPost.Record) => {
   const agent = await getAgent();

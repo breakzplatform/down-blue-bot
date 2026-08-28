@@ -1,5 +1,5 @@
 import type { AppBskyFeedPost } from "@atproto/api";
-import type { Post } from "../types";
+import type { Post } from "../types.js";
 
 export const getReplyData = (post: Post): AppBskyFeedPost.ReplyRef => {
   return {

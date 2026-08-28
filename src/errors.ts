@@ -1,4 +1,4 @@
-import { Post } from "./types";
+import { Post } from "./types.js";
 
 class BaseError extends Error {
   public post: Post;

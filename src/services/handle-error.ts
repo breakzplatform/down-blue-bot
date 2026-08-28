@@ -1,11 +1,11 @@
 import type { AppBskyNotificationListNotifications } from "@atproto/api";
-import { getReplyData } from "../utils/get-reply-data";
-import { createPost } from "./create-post";
-import { Post, Record } from "../types";
-import { sendMessage } from "../bot/services/send-message";
-import { resolveLanguage, t } from "../dictionary/translate";
-import { NotAReplyError, PostUnavailableError } from "../errors";
-import { responses } from "../dictionary/responses";
+import { getReplyData } from "../utils/get-reply-data.js";
+import { createPost } from "./create-post.js";
+import { Post, Record } from "../types.js";
+import { sendMessage } from "../bot/services/send-message.js";
+import { resolveLanguage, t } from "../dictionary/translate.js";
+import { NotAReplyError, PostUnavailableError } from "../errors.js";
+import { responses } from "../dictionary/responses.js";
 
 export const handleError = async (
   error: unknown,

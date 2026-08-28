@@ -1,5 +1,5 @@
-import { responses } from "./responses";
-import { Languages } from "./types";
+import { responses } from "./responses.js";
+import { Languages } from "./types.js";
 
 const pickRandom = <T>(options: readonly T[]) =>
   options[Math.floor(Math.random() * options.length)];

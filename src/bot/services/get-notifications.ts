@@ -1,4 +1,4 @@
-import { getAgent } from "../agent";
+import { getAgent } from "../agent.js";
 
 interface GetNotificationsParams {
   cursor?: string;

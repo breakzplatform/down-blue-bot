@@ -2,6 +2,7 @@
   "name": "down-blue-bot",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "license": "MIT",
   "repository": "github:breakzplatform/down-blue-bot",
   "packageManager": "pnpm@11.1.3",

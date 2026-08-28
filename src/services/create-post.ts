@@ -1,5 +1,5 @@
 import { AppBskyFeedPost } from "@atproto/api";
-import { createRecord } from "../bot/services/create-record";
+import { createRecord } from "../bot/services/create-record.js";
 
 type CreatePostData = Partial<AppBskyFeedPost.Record> & {
   text: string;

@@ -1,5 +1,5 @@
 import type { AppBskyNotificationListNotifications } from "@atproto/api";
-import { getNotifications } from "../bot/services/get-notifications";
+import { getNotifications } from "../bot/services/get-notifications.js";
 
 const PAGE_SIZE = 100;
 const MAX_PAGES = 10;

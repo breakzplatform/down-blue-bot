@@ -1,4 +1,4 @@
-import { getAgent } from "../agent";
+import { getAgent } from "../agent.js";
 
 export const updateSeen = async (seenAt: string) => {
   const agent = await getAgent();
