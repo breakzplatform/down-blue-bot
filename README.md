@@ -8,9 +8,9 @@
 
 ### Stack
 
-- `next`: Used for exposing serverless functions that do all the job.
 - `@atproto/api`: Official Bluesky (ATProtocol) API client.
-- Vercel: Used for hosting the project, running the serverless functions and running the cron jobs.
+- Vercel: Used for hosting the project and running the serverless function.
+- pnpm: Package manager.
 
 ### Setup
 
@@ -18,32 +18,38 @@ To run this project, you need to set the following environment variables:
 
 - `BLUESKY_USERNAME`: Your Bluesky username
 - `BLUESKY_PASSWORD`: Your Bluesky password
-- `CRON_SECRET`: A secret key used to authenticate requests (optional - production usage only)
+- `CRON_SECRET`: A secret key used to authenticate requests (production usage only). The scheduler must send it as `Authorization: Bearer $CRON_SECRET`; the check is skipped when `NODE_ENV` is `development`.
 
 It's recommended to do so by creating a `.env.local` file in the root of the project by duplicating the `.env` file and setting the environment variables.
 
 ### Running the project
 
-Run the development server:
+Install the dependencies and run the development server:
 
 ```bash
-yarn dev
+pnpm install
+```
+
+```bash
+pnpm dlx vercel dev
 ```
 
 Then you can start sending requests to the API.
 
+Beware that `GET /api/check` acts on the live account: it publishes replies
+and marks notifications as read. Use a test account while developing.
+
 ## Routes
 
-This project exposes the following routes:
+This project exposes the following route:
 
-- `GET /api/check`: Check for new mentions and reply them with the requested screenshot.
-- `GET /api/print?uri={{POST_URI}}`: Generates a screenshot of a post.
+- `GET /api/check`: Check for new mentions and reply them with the download link.
 
 ## Limitations
 
-- The image generation uses the `next/og` package that transforms HTML into a PNG image. It extends the funcionality of `satori`, which transforms HTML into SVG. It is limited in certain ways and does not support all HTML tags and CSS styles. See [docs](https://vercel.com/docs/functions/og-image-generation).
 - There is no realtime checks for new mentions. An external scheduler calls `GET /api/check` periodically, and each call looks for mentions that arrived since the previous one.
-- Bluesky API does not expose the users' timezones, so the dates are displayed with the local timezone (usually it's UTC in the production environment).
+- A single run reads at most 10 pages of 100 notifications. Anything older than that is left for the next run.
+- Replies are written in English, Portuguese, Japanese, German or Spanish, picked from the language tags of the post that mentions the bot. Any other language falls back to English.
 
 ## License
 
