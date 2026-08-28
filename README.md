@@ -1,3 +1,13 @@
+# down-blue-bot
+
+A Bluesky bot that turns a mention into a download link. Reply to any post,
+tag the bot, and it answers in the thread with a [down.blue](https://down.blue)
+link that downloads the media from the post you replied to.
+
+It runs as a single serverless function on Vercel: an external scheduler calls
+`GET /api/check`, which reads the unread mentions and answers each one in the
+language of the post that summoned it.
+
 ## Getting Started
 
 ### Stack
