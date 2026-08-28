@@ -1,6 +1,9 @@
 import { responses } from "./responses";
 import { Languages } from "./types";
 
+const pickRandom = <T>(options: readonly T[]) =>
+  options[Math.floor(Math.random() * options.length)];
+
 export const t = (
   key: keyof typeof responses,
   languages?: (string | Languages)[],
@@ -11,7 +14,8 @@ export const t = (
       | Languages
       | undefined) ?? Languages.EN;
 
-  return responses[key][language].replace(/\{\{(\w+)\}\}/g, (_, p1) => {
-    return params?.[p1] || "";
-  });
+  return pickRandom(responses[key][language]).replace(
+    /\{\{(\w+)\}\}/g,
+    (_, name) => params?.[name] || ""
+  );
 };
