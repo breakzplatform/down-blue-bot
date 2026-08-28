@@ -4,15 +4,24 @@ import { Languages } from "./types";
 const pickRandom = <T>(options: readonly T[]) =>
   options[Math.floor(Math.random() * options.length)];
 
+// Posts carry BCP-47 tags such as "pt-BR", so only the primary subtag is
+// compared against the languages the dictionary actually covers.
+const resolveLanguage = (languages?: (string | Languages)[]) => {
+  const supported = Object.values<string>(Languages);
+
+  const match = languages
+    ?.map((language) => language.split("-")[0].toLowerCase())
+    .find((language) => supported.includes(language));
+
+  return (match as Languages | undefined) ?? Languages.EN;
+};
+
 export const t = (
   key: keyof typeof responses,
   languages?: (string | Languages)[],
   params?: Record<string, string>
 ) => {
-  const language =
-    (languages?.find((l) => Object.values<string>(Languages).includes(l)) as
-      | Languages
-      | undefined) ?? Languages.EN;
+  const language = resolveLanguage(languages);
 
   return pickRandom(responses[key][language]).replace(
     /\{\{(\w+)\}\}/g,
