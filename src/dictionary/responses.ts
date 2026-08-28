@@ -85,6 +85,48 @@ export const responses = {
       "Solo funciono en respuestas. Responde a la publicación y llámame.",
     ],
   },
+  "error.postUnavailable": {
+    [Languages.EN]: [
+      "I cannot reach the post you replied to. It may have been deleted or hidden from me.",
+      "The post above this one is unavailable — deleted, or its author blocked me.",
+      "That post is out of reach for me. It was probably taken down.",
+      "I could not load the post you are asking about. It seems to be gone.",
+      "No luck: the post you replied to is not available to me.",
+      "The original post is missing, so there is nothing for me to link to.",
+    ],
+    [Languages.PT]: [
+      "Não consigo acessar o post que você respondeu. Ele pode ter sido apagado ou escondido de mim.",
+      "O post acima desse está indisponível — apagado, ou o autor me bloqueou.",
+      "Esse post está fora do meu alcance. Provavelmente foi removido.",
+      "Não consegui carregar o post que você pediu. Parece que ele sumiu.",
+      "Deu não: o post que você respondeu não está disponível pra mim.",
+      "O post original não existe mais, então não tem link pra eu passar.",
+    ],
+    [Languages.JA]: [
+      "返信先の投稿にアクセスできません。削除されたか、非公開になっている可能性があります。",
+      "この上の投稿は利用できません。削除されたか、作者にブロックされています。",
+      "その投稿には手が届きませんでした。おそらく削除されています。",
+      "お探しの投稿を読み込めませんでした。もう存在しないようです。",
+      "残念ながら、返信先の投稿は私からは見られません。",
+      "元の投稿が見つからないため、リンクをお渡しできません。",
+    ],
+    [Languages.DE]: [
+      "Ich komme an den Beitrag, auf den du geantwortet hast, nicht heran. Vielleicht wurde er gelöscht oder ist für mich verborgen.",
+      "Der Beitrag darüber ist nicht verfügbar — gelöscht, oder sein Autor hat mich blockiert.",
+      "Dieser Beitrag ist für mich unerreichbar. Wahrscheinlich wurde er entfernt.",
+      "Ich konnte den gesuchten Beitrag nicht laden. Er scheint weg zu sein.",
+      "Leider ist der Beitrag, auf den du geantwortet hast, für mich nicht verfügbar.",
+      "Der ursprüngliche Beitrag fehlt, also gibt es nichts zu verlinken.",
+    ],
+    [Languages.ES]: [
+      "No puedo acceder a la publicación que respondiste. Puede que la hayan borrado o que esté oculta para mí.",
+      "La publicación de arriba no está disponible — borrada, o su autor me bloqueó.",
+      "Esa publicación está fuera de mi alcance. Probablemente la eliminaron.",
+      "No pude cargar la publicación que buscas. Parece que ya no existe.",
+      "Nada que hacer: la publicación que respondiste no está disponible para mí.",
+      "Falta la publicación original, así que no tengo nada que enlazar.",
+    ],
+  },
   "error.unknown": {
     [Languages.EN]: [
       "An unknown error occurred: {{error}}",

@@ -17,10 +17,10 @@ export class NotAReplyError extends BaseError {
   }
 }
 
-export class ImageGenerationError extends BaseError {
-  name = "ImageGenerationError";
+export class PostUnavailableError extends BaseError {
+  name = "PostUnavailableError";
 
   constructor(post: Post) {
-    super(post, `Could not generate an image for ${post.uri}`);
+    super(post, `The post ${post.uri} replies to is unavailable`);
   }
 }
