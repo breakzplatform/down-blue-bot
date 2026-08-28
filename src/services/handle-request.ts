@@ -1,4 +1,4 @@
-import { t } from "../dictionary/translate";
+import { resolveLanguage, t } from "../dictionary/translate";
 import { Post } from "../types";
 import { getReplyData } from "../utils/get-reply-data";
 import { createPost } from "./create-post";
@@ -13,13 +13,16 @@ export const handleRequest = async (parent: Post, post: Post) => {
 
   const [, , parentDid, , parentRecordKey] = parent.uri.split("/");
 
+  const language = resolveLanguage(post.record.langs);
+
   const prefix = "⬇️ ";
-  const text = `${prefix}${t("success.reply", post.record.langs)}`;
+  const text = `${prefix}${t("success.reply", [language])}`;
 
   const encoder = new TextEncoder();
 
   const recordURI = await createPost({
     text,
+    langs: [language],
     reply: getReplyData(post),
     facets: [
       {

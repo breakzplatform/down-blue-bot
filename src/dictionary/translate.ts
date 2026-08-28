@@ -6,7 +6,7 @@ const pickRandom = <T>(options: readonly T[]) =>
 
 // Posts carry BCP-47 tags such as "pt-BR", so only the primary subtag is
 // compared against the languages the dictionary actually covers.
-const resolveLanguage = (languages?: (string | Languages)[]) => {
+export const resolveLanguage = (languages?: (string | Languages)[]) => {
   const supported = Object.values<string>(Languages);
 
   const match = languages
