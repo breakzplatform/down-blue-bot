@@ -42,7 +42,7 @@ This project exposes the following routes:
 ## Limitations
 
 - The image generation uses the `next/og` package that transforms HTML into a PNG image. It extends the funcionality of `satori`, which transforms HTML into SVG. It is limited in certain ways and does not support all HTML tags and CSS styles. See [docs](https://vercel.com/docs/functions/og-image-generation).
-- There is no realtime checks for new mentions. The API is called every minute and checks for new mentions (see [vercel.json](/vercel.json)) by using [Vercel Cron Jobs](https://vercel.com/docs/cron-jobs).
+- There is no realtime checks for new mentions. An external scheduler calls `GET /api/check` periodically, and each call looks for mentions that arrived since the previous one.
 - Bluesky API does not expose the users' timezones, so the dates are displayed with the local timezone (usually it's UTC in the production environment).
 
 ## License
