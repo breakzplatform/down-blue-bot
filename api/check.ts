@@ -1,17 +1,17 @@
 import { AppBskyFeedDefs } from "@atproto/api";
 
-import { getAgent } from "@/bot/agent";
-import { getPostThread } from "@/bot/services/get-post-thread";
-import { getUnreadNotificationsCount } from "@/bot/services/get-unread-notifications-count";
-import { updateSeen } from "@/bot/services/updateSeen";
+import { getAgent } from "../src/bot/agent";
+import { getPostThread } from "../src/bot/services/get-post-thread";
+import { getUnreadNotificationsCount } from "../src/bot/services/get-unread-notifications-count";
+import { updateSeen } from "../src/bot/services/updateSeen";
 
-import { NotAReplyError, PostUnavailableError } from "@/errors";
-import { handleError } from "@/services/handle-error";
-import { handleRequest } from "@/services/handle-request";
-import { Post } from "@/types";
-import { getUnreadMentions } from "@/utils/get-unread-mentions";
-import { hasAnswered } from "@/utils/has-answered";
-import { validateCronSecret } from "@/utils/validate-cron-secret";
+import { NotAReplyError, PostUnavailableError } from "../src/errors";
+import { handleError } from "../src/services/handle-error";
+import { handleRequest } from "../src/services/handle-request";
+import { Post } from "../src/types";
+import { getUnreadMentions } from "../src/utils/get-unread-mentions";
+import { hasAnswered } from "../src/utils/has-answered";
+import { validateCronSecret } from "../src/utils/validate-cron-secret";
 
 interface Successful {
   notificationURI: string;
