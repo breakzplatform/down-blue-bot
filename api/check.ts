@@ -24,7 +24,7 @@ interface Failed extends Omit<Successful, "recordURI"> {
 
 export const config = { runtime: "nodejs" };
 
-export default async (request: Request) => {
+export const GET = async (request: Request) => {
   try {
     validateCronSecret(request);
   } catch (error) {
