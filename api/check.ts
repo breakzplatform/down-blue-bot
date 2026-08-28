@@ -1,9 +1,11 @@
-// @ts-nocheck
+import { AppBskyFeedDefs } from "@atproto/api";
+
 import { getNotifications } from "@/bot/services/get-notifications";
 import { getPostThread } from "@/bot/services/get-post-thread";
 import { getUnreadNotificationsCount } from "@/bot/services/get-unread-notifications-count";
 import { updateSeen } from "@/bot/services/updateSeen";
 
+import { NotAReplyError } from "@/errors";
 import { handleError } from "@/services/handle-error";
 import { handleRequest } from "@/services/handle-request";
 import { Post } from "@/types";
@@ -37,7 +39,7 @@ export default async (request: Request) => {
   const data = await getNotifications();
 
   const notifications = data.notifications.filter(
-    (n: any) => !n.isRead && n.reason === "mention"
+    (notification) => !notification.isRead && notification.reason === "mention"
   );
 
   if (notifications.length === 0) {
@@ -58,10 +60,17 @@ export default async (request: Request) => {
 
       const thread = await getPostThread(notification.uri);
 
-      const recordURI = await handleRequest(
-        thread.parent.post as Post,
-        thread.post as Post
-      );
+      if (!AppBskyFeedDefs.isThreadViewPost(thread)) {
+        throw new Error(`Thread ${notification.uri} is unavailable`);
+      }
+
+      const mention = thread.post as Post;
+
+      if (!AppBskyFeedDefs.isThreadViewPost(thread.parent)) {
+        throw new NotAReplyError(mention);
+      }
+
+      const recordURI = await handleRequest(thread.parent.post as Post, mention);
 
       success.push({ notificationURI: notification.uri, recordURI });
 

@@ -1,5 +1,4 @@
-import type { PostView } from "@atproto/api/dist/client/types/app/bsky/feed/defs";
-import type { Record as BskyFeedPostRecord } from "@atproto/api/dist/client/types/app/bsky/feed/post";
+import type { AppBskyFeedDefs, AppBskyFeedPost } from "@atproto/api";
 
-export type Record = BskyFeedPostRecord;
-export type Post = PostView & { record: Record };
+export type Record = AppBskyFeedPost.Record;
+export type Post = AppBskyFeedDefs.PostView & { record: Record };

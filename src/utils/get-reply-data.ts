@@ -1,7 +1,7 @@
-import type { ReplyRef } from "@atproto/api/dist/client/types/app/bsky/feed/post";
+import type { AppBskyFeedPost } from "@atproto/api";
 import type { Post } from "../types";
 
-export const getReplyData = (post: Post): ReplyRef => {
+export const getReplyData = (post: Post): AppBskyFeedPost.ReplyRef => {
   return {
     parent: {
       uri: post.uri,
