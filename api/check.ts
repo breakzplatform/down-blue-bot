@@ -1,17 +1,13 @@
 // @ts-nocheck
-import { getNotifications } from "@/app/bot/services/get-notifications";
-import { getPostThread } from "@/app/bot/services/get-post-thread";
-import { getUnreadNotificationsCount } from "@/app/bot/services/get-unread-notifications-count";
-import { updateSeen } from "@/app/bot/services/updateSeen";
+import { getNotifications } from "@/bot/services/get-notifications";
+import { getPostThread } from "@/bot/services/get-post-thread";
+import { getUnreadNotificationsCount } from "@/bot/services/get-unread-notifications-count";
+import { updateSeen } from "@/bot/services/updateSeen";
 
-import { handleError } from "@/app/services/handle-error";
-import { handleRequest } from "@/app/services/handle-request";
-import { Post } from "@/app/types";
-import { validateCronSecret } from "@/app/utils/validate-cron-secret";
-import { NextRequest } from "next/server";
-
-// disable static page generation
-export const revalidate = 0;
+import { handleError } from "@/services/handle-error";
+import { handleRequest } from "@/services/handle-request";
+import { Post } from "@/types";
+import { validateCronSecret } from "@/utils/validate-cron-secret";
 
 interface Successful {
   notificationURI: string;
@@ -22,7 +18,9 @@ interface Failed extends Omit<Successful, "recordURI"> {
   error: string;
 }
 
-export const GET = async (request: NextRequest) => {
+export const config = { runtime: "nodejs" };
+
+export default async (request: Request) => {
   try {
     validateCronSecret(request);
   } catch (error) {
@@ -39,7 +37,7 @@ export const GET = async (request: NextRequest) => {
   const data = await getNotifications();
 
   const notifications = data.notifications.filter(
-    (n) => !n.isRead && n.reason === "mention"
+    (n: any) => !n.isRead && n.reason === "mention"
   );
 
   if (notifications.length === 0) {
@@ -60,7 +58,10 @@ export const GET = async (request: NextRequest) => {
 
       const thread = await getPostThread(notification.uri);
 
-      const recordURI = await handleRequest(thread.parent.post as Post, thread.post as Post);
+      const recordURI = await handleRequest(
+        thread.parent.post as Post,
+        thread.post as Post
+      );
 
       success.push({ notificationURI: notification.uri, recordURI });
 
@@ -82,8 +83,5 @@ export const GET = async (request: NextRequest) => {
 
   await updateSeen(seenAt);
 
-  return Response.json({
-    success,
-    errors,
-  });
+  return Response.json({ success, errors });
 };

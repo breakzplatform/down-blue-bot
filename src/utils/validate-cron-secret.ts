@@ -1,6 +1,4 @@
-import { NextRequest } from "next/server";
-
-export const validateCronSecret = (request: NextRequest) => {
+export const validateCronSecret = (request: Request) => {
   if (process.env.NODE_ENV === "development") {
     return;
   }
