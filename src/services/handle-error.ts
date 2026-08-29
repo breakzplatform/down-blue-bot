@@ -15,7 +15,7 @@ export const handleError = async (
     const language = resolveLanguage(post.record.langs);
 
     return createPost({
-      text: `[Error] ${t(key, [language])}`,
+      text: t(key, [language]),
       langs: [language],
       reply: getReplyData(post),
     });
