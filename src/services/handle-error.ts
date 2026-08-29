@@ -42,12 +42,11 @@ export const handleError = async (
       return;
     }
 
-    await sendMessage(
-      notification.author.did,
-      t("error.unknown", (notification.record as Record).langs, {
-        error: (error as Error).message,
-      })
-    );
+    const language = resolveLanguage((notification.record as Record).langs);
+    const text = t("error.unknown", [language]);
+    const facet = getLinkFacet(text, DOWN_BLUE_LABEL, DOWN_BLUE_URL);
+
+    await sendMessage(notification.author.did, text, facet && [facet]);
   } catch (error) {
     console.error("Error while handling error:");
     console.error(error);

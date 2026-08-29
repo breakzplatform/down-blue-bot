@@ -18,13 +18,5 @@ export const resolveLanguage = (languages?: (string | Languages)[]) => {
 
 export const t = (
   key: keyof typeof responses,
-  languages?: (string | Languages)[],
-  params?: Record<string, string>
-) => {
-  const language = resolveLanguage(languages);
-
-  return pickRandom(responses[key][language]).replace(
-    /\{\{(\w+)\}\}/g,
-    (_, name) => params?.[name] || ""
-  );
-};
+  languages?: (string | Languages)[]
+) => pickRandom(responses[key][resolveLanguage(languages)]);
