@@ -8,6 +8,20 @@ It runs as a single serverless function on Vercel: an external scheduler calls
 `GET /api/check`, which reads the unread mentions and answers each one in the
 language of the post that summoned it.
 
+## Features
+
+- **Download link on mention.** Reply to the post you want, tag the bot, and it
+  answers in the same thread with a `down.blue` link pointing at that post. The
+  link is attached as a rich text facet, so the whole sentence is clickable.
+- **Multiple languages.** Replies are written in English, Portuguese, Japanese,
+  German or Spanish, chosen from the language tags of the post that mentions the
+  bot.
+- **Answers when it cannot help.** If the mention is not a reply, or the post
+  above it was deleted or hides the bot, the reply says which of the two happened
+  and points at down.blue so the user can paste the link themselves. Unexpected
+  failures are reported by direct message instead of in the thread — with the
+  same suggestion, never with the raw exception.
+
 ## Getting Started
 
 ### Stack
@@ -21,7 +35,7 @@ language of the post that summoned it.
 To run this project, you need to set the following environment variables:
 
 - `BLUESKY_USERNAME`: Your Bluesky username
-- `BLUESKY_PASSWORD`: Your Bluesky password
+- `BLUESKY_PASSWORD`: An app password created with "Allow access to your direct messages" enabled — the bot reports unexpected failures over DM, and that permission cannot be added to an existing app password
 - `CRON_SECRET`: A secret key used to authenticate requests (production usage only). The scheduler must send it as `Authorization: Bearer $CRON_SECRET`; the check is skipped when `NODE_ENV` is `development`.
 
 It's recommended to do so by creating a `.env.local` file in the root of the project by duplicating the `.env` file and setting the environment variables.
@@ -53,7 +67,7 @@ This project exposes the following route:
 
 - There is no realtime checks for new mentions. An external scheduler calls `GET /api/check` periodically, and each call looks for mentions that arrived since the previous one.
 - A single run reads at most 10 pages of 100 notifications. Anything older than that is left for the next run.
-- Replies are written in English, Portuguese, Japanese, German or Spanish, picked from the language tags of the post that mentions the bot. Any other language falls back to English.
+- The bot does not download anything itself. It builds the `down.blue` link for the post and the site does the rest.
 
 ## Credits
 
