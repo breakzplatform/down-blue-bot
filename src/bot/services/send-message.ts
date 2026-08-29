@@ -1,12 +1,12 @@
 import type { AppBskyRichtextFacet } from "@atproto/api";
-import { getAgent } from "../agent.js";
+import { getChatAgent } from "../agent.js";
 
 export const sendMessage = async (
   targetDid: string,
   text: string,
   facets?: AppBskyRichtextFacet.Main[]
 ) => {
-  const agent = await getAgent();
+  const agent = await getChatAgent();
 
   const {
     data: { convo },

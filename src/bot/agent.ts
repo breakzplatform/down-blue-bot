@@ -12,3 +12,9 @@ export const getAgent = async () => {
 
   return agent;
 };
+
+// The chat.bsky.* endpoints are served by a separate service, so the PDS needs
+// the atproto-proxy header to know where to route them. It is opt-in: without
+// this clone every direct message call fails.
+export const getChatAgent = async () =>
+  (await getAgent()).withProxy("bsky_chat", "did:web:api.bsky.chat");
