@@ -6,6 +6,10 @@ import { sendMessage } from "../bot/services/send-message.js";
 import { resolveLanguage, t } from "../dictionary/translate.js";
 import { NotAReplyError, PostUnavailableError } from "../errors.js";
 import { responses } from "../dictionary/responses.js";
+import { getLinkFacet } from "../utils/get-link-facet.js";
+
+const DOWN_BLUE_LABEL = "down.blue";
+const DOWN_BLUE_URL = "https://down.blue";
 
 export const handleError = async (
   error: unknown,
@@ -13,11 +17,14 @@ export const handleError = async (
 ) => {
   const reply = (post: Post, key: keyof typeof responses) => {
     const language = resolveLanguage(post.record.langs);
+    const text = t(key, [language]);
+    const facet = getLinkFacet(text, DOWN_BLUE_LABEL, DOWN_BLUE_URL);
 
     return createPost({
-      text: t(key, [language]),
+      text,
       langs: [language],
       reply: getReplyData(post),
+      facets: facet && [facet],
     });
   };
 
